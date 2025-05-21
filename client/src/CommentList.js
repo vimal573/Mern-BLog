@@ -10,7 +10,6 @@ const CommentList = ({ postId }) => {
       `http://localhost:4001/posts/${postId}/comments`
     );
 
-    console.log(res);
     setComments(res.data);
   };
 
