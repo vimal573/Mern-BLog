@@ -23,18 +23,24 @@ app.post('/posts/:id/comments', async (req, res) => {
 
   commentsByPostId[req.params.id] = comments;
 
-  await axios.post('http://localhost:4005/events', {
-    type: 'CommentCreated',
-    data: {
-      id: commentId,
-      content,
-      postId: req.params.id,
-    },
-  });
+  await axios
+    .post('http://localhost:4005/events', {
+      type: 'CommentCreated',
+      data: {
+        id: commentId,
+        content,
+        postId: req.params.id,
+      },
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
 
   res.status(201).send(comments);
 });
 
+// app.post('/events');
+
 app.listen(4001, () => {
-  console.log('Listening on 40001');
+  console.log('Listening on 4001');
 });
