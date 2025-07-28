@@ -49,7 +49,7 @@ app.post('/events', async (req, res) => {
     const { postId, id, status } = data;
     const comments = commentsByPostId[postId];
 
-    const comment = comments.finds(comment => {
+    const comment = comments.find(comment => {
       return comment.id === id;
     });
     comment.status = status;
